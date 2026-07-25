@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+}
+
+enum OrderStatus {
+  EN_ATTENTE
+  CONFIRMEE
+  LIVREE
+  ANNULEE
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  products  Product[]
+}
+
+model Product {
+  id            String        @id @default(cuid())
+  name          String
+  slug          String        @unique
+  description   String
+  price         Decimal       @db.Decimal(10, 2)
+  stock         Int           @default(0)
+  isAvailable   Boolean       @default(true)
+  brand         String?
+  categoryId    String
+  category      Category      @relation(fields: [categoryId], references: [id])
+  images        ProductImage[]
+  orderItems    OrderItem[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([categoryId])
+}
+
+model ProductImage {
+  id         String   @id @default(cuid())
+  url        String
+  publicId   String
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  position   Int      @default(0)
+}
+
+model Order {
+  id            String       @id @default(cuid())
+  reference     String       @unique
+  firstName     String
+  lastName      String
+  phone         String
+  address       String
+  city          String
+  status        OrderStatus  @default(EN_ATTENTE)
+  totalAmount   Decimal      @db.Decimal(10, 2)
+  items         OrderItem[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id])
+  productName String
+  unitPrice   Decimal  @db.Decimal(10, 2)
+  quantity    Int
+
+  @@index([orderId])
+}
