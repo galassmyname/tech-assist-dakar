@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getFeaturedProducts, getPublicCategories } from "@/actions/shop-actions";
 import ProductCard from "@/components/shop/ProductCard";
-
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Tech-Assist Dakar — Ordinateurs, Smartphones & Accessoires Informatiques",
   description:

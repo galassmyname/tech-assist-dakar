@@ -1,5 +1,5 @@
 import CheckoutForm from "@/components/shop/CheckoutForm";
-
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Finaliser ma commande — Tech-Assist Dakar",
   robots: { index: false, follow: false },

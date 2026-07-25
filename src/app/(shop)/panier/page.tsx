@@ -1,5 +1,5 @@
 import CartView from "@/components/shop/CartView";
-
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Mon panier — Tech-Assist Dakar",
   robots: { index: false, follow: false },

@@ -2,7 +2,7 @@ import { getOrderById } from "@/actions/order-actions";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Commande confirmee — Tech-Assist Dakar",
   robots: { index: false, follow: false },

@@ -3,7 +3,7 @@ import ProductCard from "@/components/shop/ProductCard";
 import Filters from "@/components/shop/Filters";
 import Pagination from "@/components/shop/Pagination";
 import { SearchX } from "lucide-react";
-
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Tous les produits — Tech-Assist Dakar",
   description: "Parcourez notre catalogue complet : ordinateurs, smartphones, accessoires, composants et peripheriques electroniques a Dakar.",

@@ -5,7 +5,7 @@ import ProductGallery from "@/components/shop/ProductGallery";
 import AddToCartPanel from "@/components/shop/AddToCartPanel";
 import ProductCard from "@/components/shop/ProductCard";
 import Link from "next/link";
-
+export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: {

@@ -6,6 +6,8 @@ import Pagination from "@/components/shop/Pagination";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {
